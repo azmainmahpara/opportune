@@ -174,7 +174,7 @@ const UpdateProfileDialog = ({ open, setOpen, isRecruiter }) => {
                                 />
                             </div>
                             <div className="grid grid-cols-4 items-center gap-4">
-                                <Label htmlFor="skills" className="text-right">Skills</Label>
+                                <Label htmlFor="skills" className="text-right">Skills<span className="text-red-500">*</span></Label>
                                 <Input
                                     id="skills"
                                     name="skills"
