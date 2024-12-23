@@ -635,20 +635,22 @@ const ChatButton = ({ userType }) => {
                       </>
                     ) : (
                       <button
-                        type="submit"
-                        disabled={!newMessage.trim() || sendingMessage}
-                        className={`px-8 py-3 rounded-lg text-white whitespace-nowrap ${
-                          !newMessage.trim() || sendingMessage
-                            ? 'bg-gray-400 cursor-not-allowed'
-                            : 'bg-[#2596be] hover:bg-[#6d3bd4]'
-                        }`}
-                      >
-                        {sendingMessage ? (
-                          <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                        ) : (
-                          'Send'
-                        )}
-                      </button>
+                      type="submit"
+                      disabled={!newMessage.trim() || sendingMessage}
+                      title={!newMessage.trim() ? "Enter a text to send" : ""}
+                      className={`px-8 py-3 rounded-lg text-white whitespace-nowrap ${
+                        !newMessage.trim() || sendingMessage
+                          ? "bg-gray-400 cursor-not-allowed"
+                          : "bg-[#2596be] hover:bg-[#6d3bd4]"
+                      }`}
+                    >
+                      {sendingMessage ? (
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      ) : (
+                        "Send"
+                      )}
+                    </button>
+                    
                     )}
                   </div>
                   <input
