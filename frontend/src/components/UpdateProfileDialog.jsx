@@ -174,18 +174,19 @@ const UpdateProfileDialog = ({ open, setOpen, isRecruiter }) => {
                                 />
                             </div>
                             <div className="grid grid-cols-4 items-center gap-4">
-                                <Label htmlFor="skills" className="text-right">Skills</Label>
+                                <Label htmlFor="skills" className="text-right">Skills<span className="text-red-500">*</span></Label>
                                 <Input
                                     id="skills"
                                     name="skills"
                                     value={input.skills}
                                     onChange={changeEventHandler}
                                     className="col-span-3"
+                                    required
                                 />
                             </div>
                             {!isRecruiter && ( // Only show resume for students
                                 <div className="grid grid-cols-4 items-center gap-4">
-                                    <Label htmlFor="file" className="text-right">Resume</Label>
+                                    <Label htmlFor="file" className="text-right">Resume<span className="text-red-500">*</span></Label>
                                     <div className="col-span-3">
                                         <Input
                                             id="file"
@@ -194,6 +195,7 @@ const UpdateProfileDialog = ({ open, setOpen, isRecruiter }) => {
                                             accept=".pdf,.docx"
                                             onChange={fileChangeHandler}
                                             className="col-span-3"
+                                            required
                                         />
                                         <p className="mt-1 text-xs text-gray-500">
                                             Accepted formats: PDF, DOCX (Max size: 5MB)
