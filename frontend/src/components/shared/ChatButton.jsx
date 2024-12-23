@@ -562,7 +562,13 @@ const ChatButton = ({ userType }) => {
                             hour: '2-digit', 
                             minute: '2-digit' 
                           })}
-                          {message.edited && ' (edited)'}
+                          {message.edited && (
+                          <span>
+                         {' ('}
+                         <span style={{ color: '#FFFFFF', fontWeight: '900', textTransform: 'uppercase' }}>EDITED</span>
+                         {')'}
+                         </span>
+                          )}
                         </div>
                       </div>
 
