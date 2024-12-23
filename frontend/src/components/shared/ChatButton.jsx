@@ -550,8 +550,8 @@ const ChatButton = ({ userType }) => {
                       <div
                         className={`max-w-[80%] rounded-lg px-4 py-2 ${
                           message.senderId === currentUser?._id
-                            ? 'bg-[#2596be] text-white'
-                            : 'bg-gray-100 text-gray-800'
+                              ? 'bg-[#2596be] text-white'
+                              : 'bg-gray-300 text-gray-800'
                         }`}
                       >
                         {renderMessageContent(message)}
@@ -562,13 +562,22 @@ const ChatButton = ({ userType }) => {
                             hour: '2-digit', 
                             minute: '2-digit' 
                           })}
-                          {message.edited && (
-                          <span>
-                         {' ('}
-                         <span style={{ color: '#FFFFFF', fontWeight: '900', textTransform: 'uppercase' }}>EDITED</span>
-                         {')'}
-                         </span>
-                          )}
+                         {message.edited && (
+  <span>
+    {' ('}
+    <span
+      style={{
+        color: message.senderId === currentUser?._id ? '#FFFFFF' : '#000000', // White for sender, black for other side
+        fontWeight: 'bold',
+        textTransform: 'uppercase',
+      }}
+    >
+      EDITED
+    </span>
+    {')'}
+  </span>
+)}
+
                         </div>
                       </div>
 
@@ -635,20 +644,21 @@ const ChatButton = ({ userType }) => {
                       </>
                     ) : (
                       <button
-                        type="submit"
-                        disabled={!newMessage.trim() || sendingMessage}
-                        className={`px-8 py-3 rounded-lg text-white whitespace-nowrap ${
-                          !newMessage.trim() || sendingMessage
-                            ? 'bg-gray-400 cursor-not-allowed'
-                            : 'bg-[#2596be] hover:bg-[#6d3bd4]'
-                        }`}
-                      >
-                        {sendingMessage ? (
-                          <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                        ) : (
-                          'Send'
-                        )}
-                      </button>
+                      type="submit"
+                      disabled={!newMessage.trim() || sendingMessage}
+                      className={`px-8 py-3 rounded-lg text-white whitespace-nowrap ${
+                        !newMessage.trim() || sendingMessage
+                          ? 'bg-gray-400 cursor-not-allowed'
+                          : 'bg-[#2596be] hover:bg-[#6d3bd4]'
+                      }`}
+                      title={!newMessage.trim() ? 'Enter text to send' : ''} // Tooltip for disabled button
+                    >
+                      {sendingMessage ? (
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      ) : (
+                        'Send'
+                      )}
+                    </button>
                     )}
                   </div>
                   <input
