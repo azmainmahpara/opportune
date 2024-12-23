@@ -26,14 +26,40 @@ const Signup = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const [passwordStrength, setPasswordStrength] = useState("");
+
+    const checkPasswordStrength = (password) => {
+        const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        const mediumPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$/;
+
+        if (strongPasswordRegex.test(password)) {
+            setPasswordStrength("Strong");
+        } else if (mediumPasswordRegex.test(password)) {
+            setPasswordStrength("Medium");
+        } else {
+            setPasswordStrength("Weak");
+        }
+    }
+
     const changeEventHandler = (e) => {
-        setInput({ ...input, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setInput({ ...input, [name]: value });
+        if (name === "password") {
+            checkPasswordStrength(value);
+        }
     }
     const changeFileHandler = (e) => {
         setInput({ ...input, file: e.target.files?.[0] });
     }
     const submitHandler = async (e) => {
         e.preventDefault();
+
+        // Check password strength before proceeding
+        if (passwordStrength !== "Strong") {
+            toast.error("Your password must be strong (at least 8 characters, including uppercase, lowercase, numbers, and special characters).");
+            return; // Prevent form submission
+        }
+
         const formData = new FormData();
         formData.append("fullname", input.fullname);
         formData.append("email", input.email);
@@ -97,6 +123,7 @@ const Signup = () => {
                             name="fullname"
                             onChange={changeEventHandler}
                             required
+                            placeholder="John Doe"
                         />
                     </div>
 
@@ -108,6 +135,7 @@ const Signup = () => {
                             name="email"
                             onChange={changeEventHandler}
                             required
+                            placeholder="john.doe@example.com"
                         />
                     </div>
 
@@ -119,6 +147,7 @@ const Signup = () => {
                             name="phoneNumber"
                             onChange={changeEventHandler}
                             required
+                            placeholder="01234567890"
                         />
                     </div>
 
@@ -130,7 +159,11 @@ const Signup = () => {
                             name="password"
                             onChange={changeEventHandler}
                             required
+                            placeholder="P@ssw0rd!2023"
                         />
+                        <p className={`text-sm ${passwordStrength === "Strong" ? "text-green-500" : passwordStrength === "Medium" ? "text-yellow-500" : "text-red-500"}`}>
+                            Password Strength: {passwordStrength}
+                        </p>
                     </div>
 
                     <div className='flex items-center justify-between'>
