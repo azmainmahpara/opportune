@@ -29,8 +29,8 @@ const Navbar = () => {
         }
     }
     return (
-        <div className='bg-white'>
-            <div className='flex items-center justify-between mx-auto max-w-7xl h-16'>
+<div className='bg-white' >
+<div className='flex items-center justify-between mx-auto max-w-7xl h-16'>
                 <div>
                     <Link to="/">
                         <img 

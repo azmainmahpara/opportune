@@ -56,7 +56,14 @@ const Login = () => {
     return (
         <div>
             <Navbar />
-            <div className='flex items-center justify-center max-w-7xl mx-auto'>
+            <div className="flex h-screen">
+                {/* Left side with image */}
+                <div className="w-1/2 flex items-center justify-center bg-cover bg-center">
+                    <img src="/images/welcome.jpg" alt="Welcome" className="w-full h-full object-cover" />
+                </div>
+
+                {/* Right side with login form */}
+                <div className="w-1/2 flex items-center justify-center">
                 <form onSubmit={submitHandler} className='w-1/2 border border-gray-200 rounded-md p-4 my-10'>
                     <h1 className='font-bold text-xl mb-5'>Login</h1>
                     <div className='my-2'>
@@ -109,9 +116,10 @@ const Login = () => {
                     }
                     <span className='text-sm'>Don't have an account? <Link to="/signup" className='text-blue-600'>Signup</Link></span>
                 </form>
+                </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Login
+export default Login;
