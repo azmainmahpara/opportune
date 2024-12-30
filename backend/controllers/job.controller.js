@@ -1,6 +1,6 @@
 import { Job } from "../models/job.model.js";
 
-// admin post krega job
+
 export const postJob = async (req, res) => {
     try {
         const { title, description, requirements, salary, location, jobType, experience, position, companyId } = req.body;
