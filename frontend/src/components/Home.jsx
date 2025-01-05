@@ -19,8 +19,12 @@ const Home = () => {
     }
   }, []);
   return (
-    <div>
-      <Navbar />
+<div
+    style={{
+      background: 'linear-gradient(90deg, rgba(246,249,251,1) 0%, rgba(204,233,250,1) 50%, rgba(255,255,255,1) 100%)',
+      minHeight: '100vh', // Ensures the background covers the viewport height
+    }}
+  >      <Navbar />
       <HeroSection />
       <CategoryCarousel />
       <LatestJobs />
