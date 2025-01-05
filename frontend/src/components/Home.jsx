@@ -14,10 +14,11 @@ const Home = () => {
   const { user } = useSelector(store => store.auth);
   const navigate = useNavigate();
   useEffect(() => {
-    if (user?.role === 'recruiter') {
-      navigate("/admin/companies");
+    // Redirect only if a condition requires it (e.g., accessing admin area)
+    if (user?.role === 'recruiter' && window.location.pathname === '/admin') {
+      navigate('/admin/companies');
     }
-  }, []);
+  }, [user, navigate]);
   return (
 <div
     style={{
